@@ -29,28 +29,28 @@ The UI design is highly inspired by modern, premium Figma mockups, featuring gla
 
 A clean, centered card design for returning users to securely log into their accounts.
 
-> _(Place your `login.png` screenshot here)_
+> _(`login.png` file)_
 > ![Login Screen](figma_designs/Screen_1.png)
 
 ### 2. Registration Screen
 
 A detailed registration form with validation and a seamless flow for new users joining the platform.
 
-> _(Place your `register.png` screenshot here)_
+> _(`register.png` file)_
 > ![Registration Screen](figma_designs/Screen_2.png)
 
 ### 3. Dashboard (Empty / Welcome State)
 
 When a user has no messages, they are greeted by Clara (the AI avatar), personalized greetings, and an introductory quote.
 
-> _(Place your `dashboard_empty.png` screenshot here)_
+> _(`dashboard_empty.png` file)_
 > ![Empty Dashboard](figma_designs/Screen_3.png)
 
 ### 4. Active Chat Interface
 
 The main chat view where users can ask complex questions about electrical machines and receive beautifully formatted, fast responses.
 
-> _(Place your `dashboard_chat.png` screenshot here)_
+> _(`dashboard_chat.png` file)_
 > ![Active Chat](figma_designs/Screen_4.png)
 
 ---

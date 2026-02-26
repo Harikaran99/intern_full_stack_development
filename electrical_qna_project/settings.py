@@ -2,10 +2,10 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()  # Load values from .env file
-
 # Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv()  # Load values from .env file
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")  # ✅ FIXED: Don't hardcode key name as value!
@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")  # ✅ FIXED: Don't hardcode key name as va
 # Turn on/off debug mode
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # For local testing, you can use: ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Installed apps

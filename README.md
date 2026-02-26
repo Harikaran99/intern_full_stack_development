@@ -1,65 +1,155 @@
-# voltieai-chatbot
-A Django-based interactive Q&amp;A chatbot platform for Electrical Machines using MySQL and a ChatGPT-compatible API (like Groq).
-=======
-Intern Full Stack Development Test: Electrical Machines Q&A Platform
+# AskVoltieAI 🤖⚡
 
-Project Overview:
+**AskVoltieAI** is a modern, dark-themed AI chat web application specialized in answering questions about **electrical machines**. Built with a focus on speed, privacy, and beautiful UI, the app provides a ChatGPT-like experience powered completely locally using the lightweight **Ollama Qwen 0.5b** model.
 
-You are tasked with building a web application using Django and MySQL to create a platform for users to ask questions related to electrical machines.
-The application should pull relevant data from a ChatGPT plugin to provide accurate answers to user queries.
+The UI design is highly inspired by modern, premium Figma mockups, featuring glassmorphism elements, subtle gradients, and clean typography.
 
-Requirements:
+---
 
-1. Backend Development:
-   * Implement a Django web application with the following features:
-    * User registration and authentication system.
-     * Ability for authenticated users to ask questions related to electrical machines.
-     * Store questions and answers in a MySQL database.
-     * Integration with a ChatGPT plugin to pull relevant data for answering questions on electrical machines.
+## ✨ Features
 
-2. Frontend Development:
-   * Create a user-friendly interface for asking questions and displaying answers.
-   * Ensure responsiveness and usability across different devices.
+- **Local AI Powered**: Completely private and fast responses using Ollama (Qwen 0.5b).
+- **Interactive Chat Interface**:
+  - Live typing indicators (bouncing dots).
+  - AJAX-based seamless message fetching (no page reloads).
+  - Clean "Empty State" welcome screen tailored for new users.
+- **User Authentication**: Secure Login, Registration, and Logout flows built with Django's authentication system.
+- **Premium Dark UI**:
+  - 3-column sticky navbar with personalized greetings (`Hi 👋, username ✨`).
+  - Right-aligned dark pill bubbles for user messages.
+  - Left-aligned clean text for bot responses.
+  - Fixed bottom input bar with a polished, interactive send button.
+- **Responsive & Dynamic**: Hover effects, smooth transitions, and error toasts for a premium feel.
 
-3. ChatGPT Integration:
-   * Utilize the ChatGPT plugin to query for relevant answers based on user questions related to electrical machines.
-   * Display the retrieved answers along with the questions in the user interface.
+---
 
-4. Database Design:
-   * Design a MySQL database schema to store user information, questions, and answers related to electrical machines.
+## 🎨 Screenshots & UI Design
 
-5. Ubuntu OS Deployment:
-   * Deploy the application on an Ubuntu server.
-   * Ensure proper setup and configuration for smooth functioning of the application.
+### 1. Login Screen
 
-Instructions:
+A clean, centered card design for returning users to securely log into their accounts.
 
-* Number of users : 10, Number of fields/columns for database: 5, Number of data/rows: 10
-* Fork this GitHub repository: [Intern Full Stack Development Test](https://github.com/vigneshranganathan/intern_full_stack_development/)
-* Complete the tasks described above within 3 days.
-* Ensure your code is well*documented and follows PEP 8 standards.
-* Use Django for backend development and MySQL as the database backend.
-* Integrate the ChatGPT plugin to pull relevant data for answering questions on electrical machines.
-* Deploy the application on an Ubuntu server (you can use any cloud provider or local setup).
-* Once completed, submit your solution by sending a pull request to the main repository.
+> _(Place your `login.png` screenshot here)_
+> ![Login Screen](screenshots/login.png)
 
-Evaluation Criteria:
+### 2. Registration Screen
 
-Your solution will be evaluated based on the following criteria:
+A detailed registration form with validation and a seamless flow for new users joining the platform.
 
-1. Functionality: Does the web application meet the specified requirements? Are users able to register, ask questions related to electrical machines, and view relevant answers?
+> _(Place your `register.png` screenshot here)_
+> ![Registration Screen](screenshots/register.png)
 
-2. Code Quality: Is the code well*structured, readable, and maintainable? Are best practices followed?
+### 3. Dashboard (Empty / Welcome State)
 
-3. Integration with ChatGPT Plugin: Is the ChatGPT plugin integrated effectively to provide relevant answers? Are queries sent to the plugin appropriately and responses handled correctly?
+When a user has no messages, they are greeted by Clara (the AI avatar), personalized greetings, and an introductory quote.
 
-4. Database Design: Is the database schema well*designed and appropriate for the task? Are relationships between entities defined correctly?
+> _(Place your `dashboard_empty.png` screenshot here)_
+> ![Empty Dashboard](screenshots/dashboard_empty.png)
 
-5. Frontend Design: Is the user interface intuitive and user*friendly? Does it provide a smooth experience for asking questions and viewing answers?
+### 4. Active Chat Interface
 
-6. Ubuntu OS Deployment: Is the application successfully deployed on an Ubuntu server? Is it accessible and functional?
+The main chat view where users can ask complex questions about electrical machines and receive beautifully formatted, fast responses.
 
-7. Documentation: Is the code adequately documented? Are setup instructions provided for deployment on an Ubuntu server?
+> _(Place your `dashboard_chat.png` screenshot here)_
+> ![Active Chat](screenshots/dashboard_chat.png)
 
-Note: If you encounter any issues or have questions during the test, feel free to reach out for clarification or assistance.
+---
 
+## 🛠️ Tech Stack
+
+- **Backend Framework**: Python (Django)
+- **Frontend Core**: HTML5, Vanilla CSS3 (Custom Styles), Bootstrap Grid/Helpers
+- **JavaScript**: Native ES6 + Fetch API for AJAX
+- **AI Integration**: Ollama (`qwen:0.5b` local model)
+- **Database**: SQLite (Default Django DB, easily swappable)
+
+---
+
+## 🚀 Getting Started (Local Setup)
+
+Follow these steps to get the project running on your local machine.
+
+### 1. Requirements
+
+- **Python 3.8+**
+- **Ollama** installed on your system ([Download Ollama](https://ollama.com/download))
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/intern_full_stack_development.git
+cd intern_full_stack_development
+```
+
+### 3. Set Up Python Environment
+
+It is highly recommended to use a virtual environment.
+
+```bash
+python -m venv venv
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+_(If you do not have a requirements.txt, you only need `django` and `requests`)_
+
+```bash
+pip install django requests
+```
+
+### 5. Setup the AI Model (Ollama)
+
+Open a new terminal window and run the following command to pull and run the required Open-Source model:
+
+```bash
+ollama run qwen:0.5b
+```
+
+Keep Ollama running in the background.
+
+### 6. Run Database Migrations
+
+Go back to your Django project terminal:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### 7. Start the Development Server
+
+```bash
+python manage.py runserver
+```
+
+Open your browser and navigate to `http://localhost:8000/`. Register a new account, and start chatting with Clara!
+
+---
+
+## 🏗️ Project Structure
+
+```text
+intern_full_stack_development/
+├── electrical_qna_project/       # Main Django settings and routing
+├── core/                         # Main application
+│   ├── templates/                # HTML Templates (base, dashboard, login, register)
+│   ├── static/                   # CSS (custom.css), JS, and Image Assets
+│   ├── models.py                 # Database schema (QAEntry)
+│   ├── views.py                  # Controllers (Auth & Dashboard AJAX logic)
+│   ├── urls.py                   # App-level routing
+│   └── chatgpt_helper.py         # Connection logic to local Ollama API
+├── manage.py                     # Django execution script
+└── README.md                     # You are here!
+```
+
+---
+
+_Built with ❤️ for electrical engineering questions._

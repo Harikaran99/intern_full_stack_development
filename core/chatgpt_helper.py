@@ -1,54 +1,34 @@
-# import os
-# from openai import OpenAI
-
-# def get_answer_from_chatgpt(question):
-#     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-#     try:
-#         response = client.chat.completions.create(
-#             model="gpt-3.5-turbo",
-#             messages=[
-#                 {"role": "system", "content": "You are an assistant that answers questions about electrical machines."},
-#                 {"role": "user", "content": question}
-#             ]
-#         )
-#         answer = response.choices[0].message.content
-#         return answer.strip()
-#     except Exception as e:
-#         return f"Error: {str(e)}"
-
-
-import os
 import requests
-from dotenv import load_dotenv
 
-load_dotenv()  # Make sure environment variables are loaded
+OLLAMA_URL = "http://localhost:11434/api/generate"
 
 def get_answer_from_chatgpt(question):
-    api_key = os.getenv("GROQ_API_KEY")
-
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
-
-    data = {
-        "model": "llama3-8b-8192",  # Groq's LLaMA 3 model
-        "messages": [
-            {"role": "system", "content": "You are an assistant that answers questions about electrical machines."},
-            {"role": "user", "content": question}
-        ]
-    }
-
+    """
+    Query the local Ollama Qwen 0.5b model.
+    Returns the answer string or a user-friendly error message.
+    """
     try:
         response = requests.post(
-            "https://api.groq.com/openai/v1/chat/completions",
-            headers=headers,
-            json=data
+            OLLAMA_URL,
+            json={
+                "model": "qwen:0.5b",
+                "prompt": (
+                    "You are Clara, an expert AI assistant from AskVoltieAI Corp "
+                    "specializing in electrical machines. Answer clearly and concisely.\n\n"
+                    f"Question: {question}"
+                ),
+                "stream": False,
+            },
+            timeout=120,   # Qwen 0.5b is fast; 2-min safety timeout
         )
-        if response.status_code == 200:
-            return response.json()["choices"][0]["message"]["content"].strip()
-        else:
-            return f"Error: {response.status_code} - {response.text}"
+        response.raise_for_status()
+        data = response.json()
+        return data.get("response", "").strip()
+
+    except requests.exceptions.ConnectionError:
+        return ("⚠️ Could not reach the local AI model. "
+                "Make sure Ollama is running: `ollama serve`")
+    except requests.exceptions.Timeout:
+        return "⚠️ The AI model took too long to respond. Please try again."
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"⚠️ Unexpected error: {str(e)}"
